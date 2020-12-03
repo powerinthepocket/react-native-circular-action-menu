@@ -21,7 +21,7 @@ const alignMap = {
   },
 
   left: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-end',
     justifyContent: 'flex-end',
     startDegree: 270,
     endDegree: 360,
@@ -83,6 +83,7 @@ export default class ActionButton extends Component {
     Animated.spring(this.state.anim, {
       toValue: 1,
       duration: 250,
+      useNativeDriver: false,
     }).start();
 
     this.setState({ active: true });
@@ -92,6 +93,8 @@ export default class ActionButton extends Component {
     Animated.spring(this.state.anim, {
       toValue: 0,
       duration: 250,
+      useNativeDriver: false,
+
     }).start();
 
     setTimeout(() => {
@@ -108,6 +111,7 @@ export default class ActionButton extends Component {
           activeOpacity={0.85}
           onLongPress={this.props.onLongPress}
           onPress={() => {
+            console.log("pressed flap")
               this.props.onPress();
               if (this.props.children) {
                 this.animateButton();
@@ -153,16 +157,10 @@ export default class ActionButton extends Component {
     }
 
     return (
-      <Animated.Text
-        style={[styles.btnText,
-                {
-                  color: this.state.anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.props.buttonTextColor, this.props.btnOutRangeTxt]
-                  })
-                }]}>
-        +
-      </Animated.Text>
+      <Animated.Image
+      style={{ resizeMode: 'stretch',width: 100,height: 100  }}
+      source={require('./sub.png')
+    }/>
     );
   }
 
