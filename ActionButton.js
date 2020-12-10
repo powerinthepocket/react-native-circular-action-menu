@@ -30,8 +30,8 @@ const alignMap = {
   right: {
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    startDegree: 180,
-    endDegree: 270,
+   startDegree: 190,
+    endDegree: 265,
   },
 };
 
